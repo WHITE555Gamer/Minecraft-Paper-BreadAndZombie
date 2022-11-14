@@ -6,7 +6,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.scheduler.BukkitTask;
 
-import static com.github.white555gamer.breadandzombie.BreadAndZombie.BreadAndZombieCount;
+import static com.github.white555gamer.breadandzombie.BreadAndZombie.countBreadAndZombie;
 import static org.bukkit.Material.BREAD;
 
 public class ItemDeliverTask {
@@ -18,7 +18,7 @@ public class ItemDeliverTask {
             @Override
             public void run() {
                 Bukkit.getOnlinePlayers().forEach(player -> {
-                    player.getInventory().addItem(new ItemStack(BREAD, BreadAndZombieCount));
+                    player.getInventory().addItem(new ItemStack(BREAD, countBreadAndZombie));
                 });
             }
         }.runTaskTimer(plugin, 0, 100);

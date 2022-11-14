@@ -11,7 +11,7 @@ import org.jetbrains.annotations.Nullable;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static com.github.white555gamer.breadandzombie.BreadAndZombie.BreadAndZombieCount;
+import static com.github.white555gamer.breadandzombie.BreadAndZombie.countBreadAndZombie;
 import static com.github.white555gamer.breadandzombie.BreadAndZombie.getInstance;
 
 public class BreadAndZombieCommand implements CommandExecutor, TabCompleter {
@@ -62,8 +62,8 @@ public class BreadAndZombieCommand implements CommandExecutor, TabCompleter {
                     return true;
                 }
                 if (ParseNumber > 0) {
-                    BreadAndZombieCount = ParseNumber;
-                    sender.sendMessage(BreadAndZombieCount + BASE_MESSAGE);
+                    countBreadAndZombie = ParseNumber;
+                    sender.sendMessage(countBreadAndZombie + BASE_MESSAGE);
                     return true;
                 }
             }
