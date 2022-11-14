@@ -25,48 +25,46 @@ public class BreadAndZombieCommand implements CommandExecutor, TabCompleter {
     @Override
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String[] args) {
 
-        if (args.length == 0) {
-            return true;
-        } else if (args.length == 1) {
-            switch (args[0]) {
-                case TYPE_ON:
-                    if (BreadAndZombie.isActive) {
-                        sender.sendMessage(ALREADY_RUNNING);
+        switch (args.length) {
+            case 0:
+                return true;
+            case 1:
+                switch (args[0]) {
+                    case TYPE_ON:
+                        if (BreadAndZombie.isActive) {
+                            sender.sendMessage(ALREADY_RUNNING);
+                            return true;
+                        }
+                        BreadAndZombie.isActive = true;
+                        sender.sendMessage(TYPE_ON + BASE_MESSAGE);
+                        itemDeliverTask = new ItemDeliverTask(getInstance());
+                        break;
+                    case TYPE_OFF:
+                        if (!BreadAndZombie.isActive) {
+                            sender.sendMessage(ALREADY_UNRUNNING);
+                            return true;
+                        }
+                        BreadAndZombie.isActive = false;
+                        sender.sendMessage(TYPE_OFF + BASE_MESSAGE);
+                        itemDeliverTask.cancel();
+                        break;
+                }
+                return true;
+            case 2:
+                if (args[0].equals(TYPE_SETNUM)) {
+                    Integer ParseNumber = 0;
+                    try {
+                        ParseNumber = Integer.parseInt(args[1]);
+                    } catch (NumberFormatException e) {
+                        sender.sendMessage(INVALID_INPUT_MESSAGE);
                         return true;
                     }
-                    BreadAndZombie.isActive = true;
-                    sender.sendMessage(TYPE_ON + BASE_MESSAGE);
-                    itemDeliverTask = new ItemDeliverTask(getInstance());
-                    break;
-                case TYPE_OFF:
-                    if (!BreadAndZombie.isActive) {
-                        sender.sendMessage(ALREADY_UNRUNNING);
+                    if (ParseNumber > 0) {
+                        countBreadAndZombie = ParseNumber;
+                        sender.sendMessage(countBreadAndZombie + BASE_MESSAGE);
                         return true;
                     }
-                    BreadAndZombie.isActive = false;
-                    sender.sendMessage(TYPE_OFF + BASE_MESSAGE);
-                    itemDeliverTask.cancel();
-                    break;
-                default:
-                    sender.sendMessage(INVALID_INPUT_MESSAGE);
-                    break;
-            }
-            return true;
-        } else if (args.length == 2) {
-            if (args[0].equals(TYPE_SETNUM)) {
-                Integer ParseNumber = 0;
-                try {
-                    ParseNumber = Integer.parseInt(args[1]);
-                } catch (NumberFormatException e) {
-                    sender.sendMessage(INVALID_INPUT_MESSAGE);
-                    return true;
                 }
-                if (ParseNumber > 0) {
-                    countBreadAndZombie = ParseNumber;
-                    sender.sendMessage(countBreadAndZombie + BASE_MESSAGE);
-                    return true;
-                }
-            }
         }
         sender.sendMessage(INVALID_INPUT_MESSAGE);
         return true;
