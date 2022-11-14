@@ -1,0 +1,13 @@
+name: BreadAndZombie
+version: '${project.version}'
+main: com.github.white555gamer.breadandzombie.BreadAndZombie
+api-version: 1.16
+
+commands:
+  breadandzombie:
+    usage: |
+      /breadandzombie on
+      /breadandzombie off
+      /breadandzombie setNum < Any Integer larger than 0 >
+    description: |
+      You can get some bread but when you jumped, zombies spawn around you.
