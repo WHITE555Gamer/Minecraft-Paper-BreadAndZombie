@@ -51,6 +51,7 @@ public class BreadAndZombieCommand implements CommandExecutor, TabCompleter {
                     sender.sendMessage(INVALID_INPUT_MESSAGE);
                     break;
             }
+            return true;
         } else if (args.length == 2) {
             if (args[0].equals(TYPE_SETNUM)) {
                 Integer ParseNumber = 0;
@@ -63,15 +64,11 @@ public class BreadAndZombieCommand implements CommandExecutor, TabCompleter {
                 if (ParseNumber > 0) {
                     BreadAndZombieCount = ParseNumber;
                     sender.sendMessage(BreadAndZombieCount + BASE_MESSAGE);
-                } else {
-                    sender.sendMessage(INVALID_INPUT_MESSAGE);
+                    return true;
                 }
-            } else {
-                sender.sendMessage(INVALID_INPUT_MESSAGE);
             }
-        } else {
-            sender.sendMessage(INVALID_INPUT_MESSAGE);
         }
+        sender.sendMessage(INVALID_INPUT_MESSAGE);
         return true;
     }
 
