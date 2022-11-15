@@ -52,15 +52,15 @@ public class BreadAndZombieCommand implements CommandExecutor, TabCompleter {
                 return true;
             case 2:
                 if (args[0].equals(TYPE_SETNUM)) {
-                    Integer ParseNumber = 0;
+                    Integer number = 0;
                     try {
-                        ParseNumber = Integer.parseInt(args[1]);
+                        number = Integer.parseInt(args[1]);
                     } catch (NumberFormatException e) {
                         sender.sendMessage(INVALID_INPUT_MESSAGE);
                         return true;
                     }
-                    if (ParseNumber > 0) {
-                        countBreadAndZombie = ParseNumber;
+                    if (number > 0) {
+                        countBreadAndZombie = number;
                         sender.sendMessage(countBreadAndZombie + BASE_MESSAGE);
                         return true;
                     }
